@@ -1,5 +1,10 @@
-const sayHello = (name) => {
-    console.log("hello " + name)
-}
+const logger = require('./logger');
 
-sayHello("pepe")
+logger.logMessage("sarasa")
+
+// const sayHello = (name) => {
+//     console.log("hello " + name)
+// }
+
+// sayHello("pepe")
+
