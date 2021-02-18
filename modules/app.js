@@ -39,4 +39,17 @@ const filesAsync = fs.readdir("./", (err, files) => {
   }
 });
 
-console.log(filesAsync)
+const EventEmitter = require("events");
+const emitter = new EventEmitter();
+
+emitter.on('messageLogged', (eventDetails) => {
+    console.log('Listener Called', eventDetails)
+})
+
+emitter.on('logging', ({ message }) => {
+    console.log(message)
+})
+
+emitter.emit('messageLogged', { id: 1, url: 'http://'});
+
+emitter.emit('logging', { message: "Message logged"});
