@@ -18,3 +18,9 @@ const pathObject = path.parse(__filename)
 
 console.log(pathObject)
 
+const operativeSystem = require("os");
+
+const totalMemory = operativeSystem.totalmem();
+const freeMemory = operativeSystem.freemem();
+
+console.log(`Total Memory: ${totalMemory}\nFree Memory: ${freeMemory}`);
