@@ -44,19 +44,29 @@ const filesAsync = fs.readdir("./", (err, files) => {
 // Events
 
 logger.on("messageLogged", (eventDetails) => {
-    console.log("Listener Called", eventDetails);
-  });  
+  console.log("Listener Called", eventDetails);
+});
 
 logger.logMessage("message from app.js");
 
-const http = require('http');
+const http = require("http");
 
-const server = http.createServer();
+const server = http.createServer((request, response) => {
+  if (request.url === "/") {
+    response.write("hello world");
+    response.end();
+  }
+
+  if (request.url === "/api/courses") {
+    response.write(JSON.stringify([1, 2, 3]));
+    response.end();
+  }
+});
+
 server.listen(3000);
 
-server.on('connection', (soscket) => {
-    console.log('New Connection');
-})
+// server.on('connection', (soscket) => {
+//     console.log('New Connection');
+// })
 
-console.log('Listening on port 3000')
-
+console.log("Listening on port 3000");
