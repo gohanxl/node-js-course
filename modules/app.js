@@ -1,14 +1,16 @@
 // first part
 
-const logger = require("./logger");
+const logService = require("./logger");
+const { Logger } = logService;
+const logger = new Logger();
 
-logger.logMessage("sarasa");
+// logger.logMessage("sarasa");
 
 const sayHello = (name) => {
   console.log("hello " + name);
 };
 
-sayHello("pepe");
+// sayHello("pepe");
 
 // second part
 
@@ -16,20 +18,20 @@ const path = require("path");
 
 const pathObject = path.parse(__filename);
 
-console.log(pathObject);
+// console.log(pathObject);
 
 const operativeSystem = require("os");
 
 const totalMemory = operativeSystem.totalmem();
 const freeMemory = operativeSystem.freemem();
 
-console.log(`Total Memory: ${totalMemory}\nFree Memory: ${freeMemory}`);
+// console.log(`Total Memory: ${totalMemory}\nFree Memory: ${freeMemory}`);
 
 const fs = require("fs");
 
 const files = fs.readdirSync("./");
 
-console.log(files);
+// console.log(files);
 
 const filesAsync = fs.readdir("./", (err, files) => {
   if (err) {
@@ -39,17 +41,11 @@ const filesAsync = fs.readdir("./", (err, files) => {
   }
 });
 
-const EventEmitter = require("events");
-const emitter = new EventEmitter();
+// Events
 
-emitter.on('messageLogged', (eventDetails) => {
-    console.log('Listener Called', eventDetails)
-})
+logger.on("messageLogged", (eventDetails) => {
+    console.log("Listener Called", eventDetails);
+  });  
 
-emitter.on('logging', ({ message }) => {
-    console.log(message)
-})
+logger.logMessage("message from app.js");
 
-emitter.emit('messageLogged', { id: 1, url: 'http://'});
-
-emitter.emit('logging', { message: "Message logged"});
