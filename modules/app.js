@@ -1,12 +1,16 @@
-// const logger = require('./logger');
+// first part
 
-// logger.logMessage("sarasa")
+const logger = require('./logger');
 
-// const sayHello = (name) => {
-//     console.log("hello " + name)
-// }
+logger.logMessage("sarasa")
 
-// sayHello("pepe")
+const sayHello = (name) => {
+    console.log("hello " + name)
+}
+
+sayHello("pepe")
+
+// second part
 
 const path = require('path');
 
